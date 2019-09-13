@@ -68,9 +68,11 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
-  # install docker
-  config.vm.provision "docker"
- 
+  # install docker via ansible
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "./ansible/playbook/docker_ubuntu.yml"
+  end
+
   config.vm.define "master" do |master|
     master.vm.hostname = "kubuntu-master"
   end
