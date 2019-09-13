@@ -13,8 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "generic/ubuntu1804"
-  config.vm.hostname = "kubuntu-master"
-
+ 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -71,5 +70,13 @@ Vagrant.configure("2") do |config|
 
   # install docker
   config.vm.provision "docker"
+ 
+  config.vm.define "master" do |master|
+    master.vm.hostname = "kubuntu-master"
+  end
+
+  config.vm.define "node1" do |node1|
+    node1.vm.hostname = "kubuntu-node1"
+  end
 
 end
