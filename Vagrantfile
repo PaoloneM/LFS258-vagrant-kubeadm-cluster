@@ -70,7 +70,16 @@ Vagrant.configure("2") do |config|
 
   # install docker via ansible
   config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "./ansible/playbook/aptitude.yaml"
+  end
+
+  # install docker via ansible
+  config.vm.provision "ansible" do |ansible|
     ansible.playbook = "./ansible/playbook/docker_ubuntu.yml"
+  end
+
+  # install kubeadm via ansible
+  config.vm.provision "ansible" do |ansible|
     ansible.playbook = "./ansible/playbook/kubeadm_ubuntu.yml"
   end
 
