@@ -2,5 +2,11 @@
   become: true
 
   tasks:
+    - name: Update and upgrade apt packages
+      become: 'True'
+      apt:
+        upgrade: yes
+        update_cache: yes
     - name: Install aptitude using apt
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+      apt: name=aptitude state=latest update_cache=no force_apt_get=yes
+
