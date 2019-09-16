@@ -8,11 +8,7 @@
 ---
 - hosts: all
   become: true
-
-  tasks:
-    - name: Install aptitude using apt
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
-
+  
   roles:
     - role: "nickjj.docker"
       tags: ["docker"]
@@ -21,4 +17,4 @@
       docker__version: "5:18.09"
       docker__users: ["{{ ansible_env.SUDO_USER | d('root') }}"]
       docker__default_daemon_json: |
-        "log-driver": "journald"
+        "exec-opts": ["native.cgroupdriver=systemd"], "log-driver": "json-file", "log-opts": {"max-size": "100m"}, "storage-driver": "overlay2"
