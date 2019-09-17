@@ -96,8 +96,10 @@ Vagrant.configure("2") do |config|
     master.vm.hostname = "kubuntu-master"
   end
 
-  config.vm.define "node1" do |node1|
-    node1.vm.hostname = "kubuntu-node1"
+  (1..2).each do |i|
+    config.vm.define "node#{i}" do |nodex|
+      nodex.vm.hostname = "kubuntu-node#{i}"
+    end
   end
 
 end
