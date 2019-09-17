@@ -7,7 +7,8 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.provider "virtualbox"
+#  config.vm.provider "virtualbox"
+  config.vm.provider "parallels"
 
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
