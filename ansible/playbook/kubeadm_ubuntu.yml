@@ -9,15 +9,21 @@
   become: true
   tasks:
   - name: Add an apt signing key for Kubernetes
+    retries: 3
+    delay: 10
     apt_key:
       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
       state: present
   - name: Adding apt repository for Kubernetes
+    retries: 3
+    delay: 10
     apt_repository:
       repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
       state: present
       filename: kubernetes.list
   - name: Install Kubernetes binaries
+    retries: 3
+    delay: 10
     apt: 
       name: "{{ packages }}"
       state: present
@@ -28,5 +34,7 @@
         - kubeadm 
         - kubectl
   - name: Disable SWAP since kubernetes can't work with swap enabled (1/2)
+    retries: 3
+    delay: 10
     shell: |
       swapoff -a

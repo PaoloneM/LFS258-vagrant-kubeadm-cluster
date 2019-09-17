@@ -11,6 +11,8 @@
   
   roles:
     - role: "nickjj.docker"
+      retries: 3
+      delay: 10
       tags: ["docker"]
       docker__edition: "ce"
       docker__channel: ["stable"]
