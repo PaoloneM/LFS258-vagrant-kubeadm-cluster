@@ -3,8 +3,12 @@
 
   tasks:
     - name: Install aptitude
+      retries: 3
+      delay: 10
       package:
         name: aptitude
         state: present
     - name: Update apt cache
       command: aptitude update
+      retries: 3
+      delay: 10
