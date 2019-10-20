@@ -7,7 +7,7 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.provider "parallels"
+  config.vm.provider "virtualbox"
   config.vm.network "public_network", bridge: "en0"
 
   # The most common configuration options are documented and commented below.
@@ -53,14 +53,17 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
-  #
+   config.vm.provider "virtualbox" do |vb|
+     # Display the VirtualBox GUI when booting the machine
+     vb.gui = true
+  
+     # Customize the amount of memory on the VM:
+     vb.memory = "8192"
+     vb.cpus = "3"
+     vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+   end
+  
   # View the documentation for the provider you are using for more
   # information on available options.
 

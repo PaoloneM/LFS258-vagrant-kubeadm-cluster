@@ -2,6 +2,8 @@
   become: true
 
   tasks:
+    - name: Fix dns
+      command: sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf 
     - name: Install aptitude
       retries: 3
       delay: 10
